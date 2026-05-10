@@ -1,5 +1,5 @@
 import axiosInstance from '../axios/axios.ts';
-import type { Author, AuthorDetails } from "./types/author.ts";
+import type { Author, AuthorDetails, AuthorFormData } from "./types/author.ts";
 
 const authorApi = {
     findAll: async () => {
@@ -7,6 +7,15 @@ const authorApi = {
     },
     findWithDetailsById: async (id: string) => {
         return await axiosInstance.get<AuthorDetails>(`/authors/${id}/details`);
+    },
+    add: async (data: AuthorFormData) => {
+        return await axiosInstance.post<Author>('/authors/add', data);
+    },
+    edit: async (id: string, data: AuthorFormData) => {
+        return await axiosInstance.put<Author>(`/authors/${id}/edit`, data);
+    },
+    delete: async (id: string) => {
+        return await axiosInstance.delete<Author>(`/authors/${id}/delete`);
     }
 };
 

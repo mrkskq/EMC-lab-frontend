@@ -9,3 +9,8 @@ export interface CountryDetails {
     name: string;
     continent: string;
 }
+
+export interface CountryFormData {
+    name: string;
+    continent: string;
+}

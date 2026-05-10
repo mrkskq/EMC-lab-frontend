@@ -1,4 +1,4 @@
-import useAuthorDetails from '../../../hooks/useAuthorDetails.ts';
+import useAuthorDetails from '../../../../hooks/useAuthorDetails.ts';
 import { Link, useNavigate, useParams } from 'react-router';
 import {
     Avatar, Box, Breadcrumbs, Button, Chip, CircularProgress, Grid, Paper, Stack, Typography

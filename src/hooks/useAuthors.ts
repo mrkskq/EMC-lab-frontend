@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import authorApi from '../api/authorApi.ts';
-import type { Author } from "../api/types/author.ts";
+import type { Author, AuthorFormData } from "../api/types/author.ts";
 
 const useAuthors = () => {
     const [authors, setAuthors] = useState<Author[]>([]);
@@ -23,11 +23,26 @@ const useAuthors = () => {
 
     }, []);
 
+    const onAdd = useCallback(async (data: AuthorFormData) => {
+        await authorApi.add(data);
+        await fetch();
+    }, [fetch]);
+
+    const onEdit = useCallback(async (id: number, data: AuthorFormData) => {
+        await authorApi.edit(id.toString(), data);
+        await fetch();
+    }, [fetch]);
+
+    const onDelete = useCallback(async (id: number) => {
+        await authorApi.delete(id.toString());
+        await fetch();
+    }, [fetch]);
+
     useEffect(() => {
         void fetch();
     }, [fetch]);
 
-    return { authors, loading, error, fetch };
+    return { authors, loading, error, fetch, onAdd, onEdit, onDelete };
 
 };
 

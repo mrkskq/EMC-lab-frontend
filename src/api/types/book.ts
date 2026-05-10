@@ -7,6 +7,7 @@ export interface Book {
     author: Author;
     state: string;
     availableCopies: number;
+    authorId: number;
 }
 
 export interface BookDetails {
@@ -14,6 +15,14 @@ export interface BookDetails {
     name: string;
     category: string;
     author: Author;
+    state: string;
+    availableCopies: number;
+}
+
+export interface BookFormData {
+    name: string;
+    category: string;
+    authorId: number;
     state: string;
     availableCopies: number;
 }

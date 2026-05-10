@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import countryApi from '../api/countryApi.ts';
-import type { Country } from "../api/types/country.ts";
+import type { Country, CountryFormData } from "../api/types/country.ts";
 
 const useCountries = () => {
     const [countries, setCountries] = useState<Country[]>([]);
@@ -23,11 +23,26 @@ const useCountries = () => {
 
     }, []);
 
+    const onAdd = useCallback(async (data: CountryFormData) => {
+        await countryApi.add(data);
+        await fetch();
+    }, [fetch]);
+
+    const onEdit = useCallback(async (id: number, data: CountryFormData) => {
+        await countryApi.edit(id.toString(), data);
+        await fetch();
+    }, [fetch]);
+
+    const onDelete = useCallback(async (id: number) => {
+        await countryApi.delete(id.toString());
+        await fetch();
+    }, [fetch]);
+
     useEffect(() => {
         void fetch();
     }, [fetch]);
 
-    return { countries, loading, error, fetch };
+    return { countries, loading, error, fetch, onAdd, onEdit, onDelete };
 
 };
 
