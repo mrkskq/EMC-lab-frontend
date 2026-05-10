@@ -22,6 +22,9 @@
 Инсталирање Material icons:
 - `npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`
 
+Инсталирање jwt-decode за extract на информациите од JWT:
+- `npm install jwt-decode`
+
 <hr/>
 
 - `npm run dev`
